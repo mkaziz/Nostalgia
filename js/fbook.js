@@ -111,6 +111,9 @@ var nostalgia = {
   
           });
           $("#fb-get-pictures").hide();
+          var audioElement = document.createElement('audio');
+          audioElement.setAttribute('src', 'https://dl.dropbox.com/u/25346311/Nostalgia/media/explosions.ogg');
+          audioElement.play();
     });
 
   },
