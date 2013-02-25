@@ -97,7 +97,7 @@ var nostalgia = {
         console.log(response);
         
         slidesContainer = $(".rslides")
-        for (i=0;i<10;i++) {
+        for (i=0;i<30;i++) {
           rand = Math.floor(Math.random()*400)
           slidesContainer.append("<li><img src='"+response[rand].images[2].source+"'></li>");
         }
@@ -110,6 +110,7 @@ var nostalgia = {
             maxwidth: 760
   
           });
+          $("#fb-get-pictures").hide();
     });
 
   },
