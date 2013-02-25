@@ -57,6 +57,8 @@ var nostalgia = {
         FB.login(nostalgia.loginHandler, { scope : "user_photos,friends_photos" }); 
     });
     
+    $("#fb-get-pictures").click(nostalgia.getTaggedPictures);
+    
     $("#fb-logout-link").click(function () { FB.logout(function () { console.log("logged out") })} );
    
     FB.getLoginStatus(this.loginStatusChecker);
@@ -87,13 +89,27 @@ var nostalgia = {
       
   },
   
-  postOnFacebook : function (userId, p) {
-    FB.api('/me/feed', 'post', { message: p }, function(response) {
-      if (!response || response.error) {
-        alert('An error occured. Please call the researcher.');
-      } else {
-        alert('Question successfully posted on facebook!');
-      }
+  getTaggedPictures : function () {
+    FB.api({
+        method: 'fql.query',
+        query: 'SELECT images FROM photo WHERE pid IN (SELECT pid FROM photo_tag WHERE subject=me())',
+    }, function(response){
+        console.log(response);
+        
+        slidesContainer = $(".rslides")
+        for (i=0;i<10;i++) {
+          rand = Math.floor(Math.random()*400)
+          slidesContainer.append("<li><img src='"+response[rand].images[2].source+"'></li>");
+        }
+        slidesContainer.responsiveSlides({
+            auto: true,             // Boolean: Animate automatically, true or false
+            speed: 500,            // Integer: Speed of the transition, in milliseconds
+            timeout: 4000,          // Integer: Time between slide transitions, in milliseconds
+            pager: false,           // Boolean: Show pager, true or false
+            nav: false,             // Boolean: Show navigation, true or false
+            maxwidth: 760
+  
+          });
     });
 
   },

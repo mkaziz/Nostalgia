@@ -1,5 +1,43 @@
+.rslides {
+  position: relative;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  margin: auto;
+  }
+
+.rslides li {
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  display: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+  }
+
+.rslides li:first-child {
+  position: relative;
+  display: block;
+  float: left;
+  }
+
+.rslides img {
+  display: block;
+  height: auto;
+  float: left;
+  width: 100%;
+  border: 0;
+  }
+}
+img {
+  width: 50%;
+  margin: auto;
+}
+
+
 #container {
-  width: 70%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -9,23 +47,13 @@
 
 }
 
-#authorize-text {
-  color:red;
-  text-align:center;
-}
-
-#question-text {
-  width: 500px;
-  min-height: 100px;
+button {
+  display: block;
   margin-left: auto;
   margin-right: auto;
-  
 }
 
-.btn {
-  width: 100px;
-}
 
-.question-btn {
-  margin-right: 30px;
+body {
+  background: black;
 }
