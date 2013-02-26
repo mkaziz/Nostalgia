@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>User</title>
+    <title>Nostalgia</title>
     
     <link rel="stylesheet" type="text/css" href="css/fbook.css">
 
@@ -13,15 +13,14 @@
     
   </head>
   <body>
-    <audio src="https://dl.dropbox.com/u/25346311/Nostalgia/media/explosions.ogg" autoplay="true"></audio>
-    <ul class="rslides"></ul>
     <div id="fb-root"></div>
-    
+    <audio src="media/explosions.ogg" id="audio"></audio>
     <div id="container">
       <!-- If user can log in with fb -->
       <div id = "fb-logged-in">
         <div id="fb-logout-link"><a href="#" >Logout</a></div>
-        <button id = "fb-get-pictures" class="btn">Get Pictures</button>
+        <ul class="rslides"></ul>
+        <button id = "fb-get-pictures" class="btn">Start</button>
       </div>
       
       <!-- What the user sees logged out of fb -->

@@ -6,7 +6,7 @@
   padding: 0;
   margin: 0;
   margin: auto;
-  max-height: 600px;
+  max-height: 580px;
   }
 
 .rslides li {
@@ -31,6 +31,11 @@
   width: 100%;
   border: 0;
   }
+  
+.caption {
+  display : relative;
+  top: -20px;
+
 }
 img {
   width: 50%;
@@ -57,4 +62,8 @@ button {
 
 body {
   background: black;
+}
+
+p {
+  color: white;
 }

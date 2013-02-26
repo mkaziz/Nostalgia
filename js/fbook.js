@@ -27,7 +27,7 @@ var nostalgia = {
   facebookInit : function () {
     FB.init({
       appId  : this.appId,
-      status : false, // check login status
+      status : true, // check login status
       cookie : true, // enable cookies to allow the server to access the session
       xfbml  : true, // parse XFBML
       oauth  : true // enable OAuth 2.0
@@ -61,7 +61,8 @@ var nostalgia = {
     
     $("#fb-logout-link").click(function () { FB.logout(function () { console.log("logged out") })} );
    
-    FB.getLoginStatus(this.loginStatusChecker);
+    FB.getLoginStatus(this.loginStatusChecker, true);
+    console.log("test");
     
   },
   
@@ -92,18 +93,22 @@ var nostalgia = {
   getTaggedPictures : function () {
     FB.api({
         method: 'fql.query',
-        query: 'SELECT images FROM photo WHERE pid IN (SELECT pid FROM photo_tag WHERE subject=me())',
+        query: 'SELECT caption, images FROM photo WHERE pid IN (SELECT pid FROM photo_tag WHERE subject=me())',
     }, function(response){
         console.log(response);
         
         slidesContainer = $(".rslides")
-        for (i=0;i<30;i++) {
+        for (i=0;i<100;i++) {
           rand = Math.floor(Math.random()*400)
-          slidesContainer.append("<li><img src='"+response[rand].images[2].source+"'></li>");
+          str =  "<li>";
+          str += "<img src='"+response[rand].images[2].source+"' />";
+          //str += "<p class='caption'>"+response[rand].caption+"</p>";
+          str += "</li>";
+          slidesContainer.append(str);
         }
         slidesContainer.responsiveSlides({
             auto: true,             // Boolean: Animate automatically, true or false
-            speed: 500,            // Integer: Speed of the transition, in milliseconds
+            speed: 800,            // Integer: Speed of the transition, in milliseconds
             timeout: 4000,          // Integer: Time between slide transitions, in milliseconds
             pager: false,           // Boolean: Show pager, true or false
             nav: false,             // Boolean: Show navigation, true or false
@@ -111,9 +116,7 @@ var nostalgia = {
   
           });
           $("#fb-get-pictures").hide();
-          var audioElement = document.createElement('audio');
-          audioElement.setAttribute('src', 'https://dl.dropbox.com/u/25346311/Nostalgia/media/explosions.ogg');
-          audioElement.play();
+          $("#audio").get(0).play();;
     });
 
   },
@@ -123,11 +126,13 @@ var nostalgia = {
       //FB.login(this.loginResponse);
       $("#fb-logged-out").show();
       $("#fb-logged-in").hide();
+      $(".rslides").val("");
     },
     
     notAuthorized : function () {
       $("#fb-logged-out").show();
       $("#fb-logged-in").hide();
+      $(".rslides").val("");
     },
     
     login : function () {
